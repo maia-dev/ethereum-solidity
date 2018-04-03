@@ -1,2 +1,3 @@
-#ethereum-solidity
+# **ethereum-solidity**
+
 Udemy course study
