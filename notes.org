@@ -1,18 +1,84 @@
-* General Knowledge
+* General Knowledge                                                 :general:
 
 ** browser pluggin to handle accounts: metaMask
 
 ** local test network: Ganache(former TestRPC)
+*** Account creation
+    the Ganache package creates a set of unprotected
+    accounts that can be used while testing
 
 ** remote test network: Rinkeby
 
+** javascript testing framework used: mocha
+
+
+* Solidity knowledge                                               :solidity:
+
 ** solidity compiler: solc
 
+** Compiling solidity code results in diferent components:
+
+*** ABI (Application Binary Interface) (abiDefinition):
+
+*** Code (EVM bytecode):                                           :ethereum:
+    The code that is actualy deployed and executed in the blockchain
+
+*** Other General information about the contract:
+**** source code
+**** language
+**** language version
+**** compiler version
+**** userDoc
+**** developerDoc
+
+
+* Ethereum knowledge                                               :ethereum:
+
+** Contract deployment
+   The bytecode resulting from the compilation of solidity code
+   can be deployed to the blockchain as a smartcontract
+
+** TODO Transaction
+
+* Blockchain knowledge                                           :blockchain:
+
+
+* Cryptocurrency knowledge                                   :cryptocurrency:
 
 
 * Glossary
 
-** ABI: sort of an API to interact with smart contracts
-** Web3: library to get programatic access to a deployed contract
+** ABI:                                                            :solidity:
+   The interface between contracts in the ethereum ecosystem,
+   both from the outside and contract-to-contract interaction
+
+** Web3:                                                         :blockchain:
+   Library to get programatic access to a deployed contract.
+   Interacts with a provider, wich in turn interacts with a network
 *** Web3 0.x.x <- more primitive interface, only callbacks for async code
 *** Web3 1.x.x <- support for promises + async/await
+
+** EVM (Ethereum Virtual Machine):                                 :ethereum:
+   Is the runtime environment for smart contracts in Ethereum.
+   It is the fundamental consensus mechanism for Ethereum.
+
+** Provider:                                   :solidity:blockchain:ethereum:
+   The communication layer with the blockchain
+*** WebsocketProvider
+
+*** HttpProvider
+
+*** IpcProvider
+
+** Smart Contract (also refered as contract):             :ethereum:solidity:
+   A computer protocol intended to digitally facilitate, verify
+   or enforce the negotiation or performance of an arrangement
+   between two or more parties
+
+** TODO Network (as in main vs tests):                             :ethereum:
+
+
+* External links
+
+** Ethereum for Web Developers: https://medium.com/@mvmurthy/ethereum-for-web-developers-890be23d1d0c
+** Life Cycle of an Ethereum Transaction: https://medium.com/blockchannel/life-cycle-of-an-ethereum-transaction-e5c66bae0f6e
