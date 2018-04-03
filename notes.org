@@ -1,0 +1,18 @@
+* General Knowledge
+
+** browser pluggin to handle accounts: metaMask
+
+** local test network: Ganache(former TestRPC)
+
+** remote test network: Rinkeby
+
+** solidity compiler: solc
+
+
+
+* Glossary
+
+** ABI: sort of an API to interact with smart contracts
+** Web3: library to get programatic access to a deployed contract
+*** Web3 0.x.x <- more primitive interface, only callbacks for async code
+*** Web3 1.x.x <- support for promises + async/await
