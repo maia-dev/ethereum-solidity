@@ -1,3 +1,7 @@
 */node_modules
+/credentials/*
+
+
+.tern-port
 
 metaMaskAccount.txt
