@@ -18,7 +18,7 @@
 
 ** Compiling solidity code results in diferent components:
 
-*** ABI (Application Binary Interface) (abiDefinition):
+*** ABI (Application Binary Interface) (abiDefinition)
 
 *** Code (EVM bytecode):                                           :ethereum:
     The code that is actualy deployed and executed in the blockchain
@@ -31,14 +31,18 @@
 **** userDoc
 **** developerDoc
 
-
 * Ethereum knowledge                                               :ethereum:
 
 ** Contract deployment
    The bytecode resulting from the compilation of solidity code
-   can be deployed to the blockchain as a smartcontract
+   can be deployed to the blockchain as a smartcontract.
+
+   In order to deploy a contract we can run our own node to get
+   access to the network or use a service like infura (infura.io).
+
 
 ** TODO Transaction
+
 
 * Blockchain knowledge                                           :blockchain:
 
@@ -63,7 +67,10 @@
    It is the fundamental consensus mechanism for Ethereum.
 
 ** Provider:                                   :solidity:blockchain:ethereum:
-   The communication layer with the blockchain
+   The communication layer with the blockchain.
+   Instructs web3 about the network it is connected to as well
+   as what accounts it is connected to.
+
 *** WebsocketProvider
 
 *** HttpProvider
