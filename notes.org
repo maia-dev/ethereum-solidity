@@ -109,6 +109,7 @@
 *** Modifier
     function modifiers are used to execute repeatable code before the function
 
+
 * Ethereum knowledge                                               :ethereum:
 
 ** Contract deployment
@@ -122,6 +123,11 @@
 ** TODO Transaction
 
 *** TODO how gas works
+
+
+** TODO Ethereum App Architecture (DApp)
+
+*** TODO find scheme images
 
 
 * Blockchain knowledge                                           :blockchain:
@@ -156,12 +162,13 @@
 
 *** IpcProvider
 
-** Smart Contract (also refered as contract):             :ethereum:solidity:
+** Smart Contract:                                        :ethereum:solidity:
    A computer protocol intended to digitally facilitate, verify
    or enforce the negotiation or performance of an arrangement
    between two or more parties
 
 ** TODO Network (as in main vs tests):                             :ethereum:
+
 
 
 * External links
