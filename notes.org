@@ -2,6 +2,7 @@
 
 ** browser pluggin to handle accounts: metaMask
 
+** online IDE for solidity: https://remix.ethereum.org/
 ** local test network: Ganache(former TestRPC)
 *** Account creation
     the Ganache package creates a set of unprotected
@@ -13,11 +14,9 @@
 
 
 * Solidity knowledge                                               :solidity:
-
 ** solidity compiler: solc
 
 ** Compiling solidity code results in diferent components:
-
 *** ABI (Application Binary Interface) (abiDefinition)
 
 *** Code (EVM bytecode):                                           :ethereum:
@@ -30,7 +29,85 @@
 **** compiler version
 **** userDoc
 **** developerDoc
+** Global Variables
+*** msg
+    Describes who sent the transaction and the transaction itself.
+    The msg object is available on contract creation and on any transaction.
+**** Properties
+***** msg.data
+      'Data' field from the call or transaction that invoked the current function
+***** msg.gas
+      Amount of gas the current function invocation has available
+***** msg.sender
+      Address of the account that started the current function invocation
+***** msg.value
+      Amount of ether (in wei) that was sent along with the function invocation
+*** block
+    Describes the current block
+*** now
+    alias to block.timestamp
 
+** Global Functions
+*** require()
+    Used to validate some boolean expression, in case the result is false
+    it rejects the transaction
+*** keccak256()
+    hashes the feeded parameters (similar to sha-3 hashing)
+** Basic Types
+*** string
+    sequence of characters
+    (its represented as a dynamic array. see arrays gotchas)
+*** bool
+    boolean value
+*** int
+    integer, positive or negative
+    diferent sizes: int8, int16, int32, ..., int256 (int == int256)
+*** uint
+    unsigned int, positive number
+    diferent sizes: uint8, uint16, uint32, ..., uint256 (uint == uint256)
+*** fixed/ufixed
+    fixed point number.
+*** address
+    has methods tied to it for handling money
+**** transfer(eth)
+     transfers the amount eth to the address
+** Reference Types
+*** fixed array
+    Array that contains a single type of element. Has an unchanging length.
+    example: int[3]
+**** Gotcha
+     Solidity world allows for creation of nested arrays BUT ABI/JS/Web3
+     world doesn't (yet).
+*** dynamic array
+    Array that contains a single type of element. Can change in size over time.
+    example: int[]
+**** Gotcha
+     Solidity world allows for creation of nested arrays BUT ABI/JS/Web3
+     world doesn't (yet).
+*** mapping
+    Collection of key value pairs. All keys must be the samy type, all values
+    must be the same type.
+    example: mapping(string => bool)
+*** struct
+    Collection of key value pairs that can have different types.
+    example: struct Car { string make; string model; uint value; }
+** Common Function Types
+*** Access modifiers
+**** public
+     Anyone can call this function
+**** private
+     Only this contract can call this function
+*** Functionality
+**** view
+     This function returns data and does not modify the contract's data
+**** constant
+     This function returns data and does not modify the contract's data
+**** pure
+     Function will not modify or even read the contract's data
+**** payable
+     When someone call this function they might send ether along
+*** Modifier
+    function modifiers are used to execute repeatable code before the function
 * Ethereum knowledge                                               :ethereum:
 
 ** Contract deployment
@@ -51,7 +128,6 @@
 
 
 * Glossary
-
 ** ABI:                                                            :solidity:
    The interface between contracts in the ethereum ecosystem,
    both from the outside and contract-to-contract interaction
