@@ -108,6 +108,7 @@
      When someone call this function they might send ether along
 *** Modifier
     function modifiers are used to execute repeatable code before the function
+
 * Ethereum knowledge                                               :ethereum:
 
 ** Contract deployment
@@ -119,6 +120,8 @@
 
 
 ** TODO Transaction
+
+*** TODO how gas works
 
 
 * Blockchain knowledge                                           :blockchain:
