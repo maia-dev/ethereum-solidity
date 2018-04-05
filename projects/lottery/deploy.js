@@ -5,10 +5,10 @@ const path = require('path');
 const { interface, bytecode } = require('./compile');
 
 const mnemonicPath = path.resolve(__dirname,'authData','mnemonic.txt');
-const mnemonic = fs.readFileSync(mnemonicPath, 'utf8');
+const mnemonic = fs.readFileSync(mnemonicPath, 'utf8').split('\n')[0];
 
 const infuraPath = path.resolve(__dirname,'authData', 'Infura.txt');
-const infuraLink = fs.readFileSync(infuraPath, 'utf8');
+const infuraLink = fs.readFileSync(infuraPath, 'utf8').split('\n')[0];
 
 
 const provider = new HDWalletProvider(
@@ -17,7 +17,6 @@ const provider = new HDWalletProvider(
 );
 
 const web3 = new Web3(provider);
-
 
 const deploy = async () => {
     const accounts = await web3.eth.getAccounts();
@@ -28,6 +27,7 @@ const deploy = async () => {
         .deploy({data: bytecode})
         .send({gas: '1000000', from: accounts[0]});
 
+    console.log(interface);
     console.log('Contract deployed to ', result.options.address);
 };
 deploy();

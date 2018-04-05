@@ -130,11 +130,24 @@
 *** TODO find scheme images
 
 
+
 * Blockchain knowledge                                           :blockchain:
 
 
 * Cryptocurrency knowledge                                   :cryptocurrency:
 
+
+* FrontEnd knowledge
+
+** Gotchas
+*** MetaMask
+    When using metaMask pluggin, web3 with the selected (in the pluggin)
+    network provider is automaticaly injected into every page you visit.
+
+    When we are using our own instance of Web3, we still want to use the
+    metamask provider (it's where the information of our account is stored),
+    for that we have to highjack the provider from metamask instace of web3.
+    (const web3 = new Web3(window.web3.currentProvider)
 
 * Glossary
 ** ABI:                                                            :solidity:
