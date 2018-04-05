@@ -112,6 +112,13 @@
 
 * Ethereum knowledge                                               :ethereum:
 
+** Objectives
+   Bitcoin blockchain was created as a tool to store a list of monetary
+   transactions between people (enable financial transactions).
+   Ethereum aims, not only to handle the transfer of currency but other
+   exchanges as well (smart contract) thus ending the need to have trusted
+   third parties involved on peer to peer transactions.
+
 ** Contract deployment
    The bytecode resulting from the compilation of solidity code
    can be deployed to the blockchain as a smartcontract.
@@ -121,17 +128,17 @@
 
 
 ** TODO Transaction
-
 *** TODO how gas works
 
 
-** TODO Ethereum App Architecture (DApp)
 
+** TODO Ethereum App Architecture (DApp)
 *** TODO find scheme images
 
 
 
 * Blockchain knowledge                                           :blockchain:
+
 
 
 * Cryptocurrency knowledge                                   :cryptocurrency:
