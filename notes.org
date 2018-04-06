@@ -110,9 +110,8 @@
     function modifiers are used to execute repeatable code before the function
 
 
-* Ethereum knowledge
 
-** TODO STATE IS REPRESENTED BY ACCOUNTS, NOT TRANSACTIONS??? IMPORTANT!!!
+* Ethereum knowledge
 
 ** Bitcoin vs Ethereum
    Bitcoin blockchain was created as a tool to store a list of monetary
@@ -132,6 +131,7 @@
 
 **** contract accounts
      controlled by their contract code
+
 
 ** Node:
    A node is a machine running an ethereum client
@@ -163,7 +163,6 @@
 ** Transaction
    A transaction is used to refer to the signed data package that stores a
    message to be sent from an externally owned account.
-
 *** Transactions contain:
 **** recipient
 **** sender
@@ -176,17 +175,26 @@
 **** gasprice
      represents the fee the sender pays per computational step
 
+*** Life cycle
+**** 1) Create transaction
+**** 2) Sign transaction
+**** 3) Validate private key (local node)
+**** 4) Broadcast to the network
+**** 5) Miner node accepts the transaction
+**** 6) Miner node finds a valid block and broadcasts to the network
+**** 7) Local node receives/syncs the new block
+
 
 ** Message
    Messages are used for contracts to comunicate with each other.
    Exist only in the Ethereum execution environment.
-
 *** messages contain:
 **** sender
 **** recipient
 **** amount of ether transfered alongside the message
 **** data (optional)
 **** startgas
+
 ** Blocks
    Ethereum blocks contain a copy of both the transaction list and the most
    recent state. Aside from that, two other values, the block number and the
@@ -203,10 +211,6 @@
    In order to deploy a contract we can run our own node to get
    access to the network or use a service like infura (infura.io).
 
-** TODO Ethereum App Architecture (DApp)
-*** TODO find scheme images
-
-
 
 * Blockchain knowledge
 
@@ -217,7 +221,6 @@
 ** TODO Node
 
 ** TODO Consensus
-
 
 
 * Cryptocurrency knowledge
@@ -232,7 +235,7 @@
 
     When we are using our own instance of Web3, we still want to use the
     metamask provider (it's where the information of our account is stored),
-    for that we have to highjack the provider from metamask instace of web3.
+    for that we have to highjack the provider ft arom metamask instace of web3.
     (const web3 = new Web3(window.web3.currentProvider)
 
 * Glossary
@@ -294,6 +297,7 @@
 
 **** Hard to guess input
      It is hard to have the output and discover the input
+
 
 
 * External links
