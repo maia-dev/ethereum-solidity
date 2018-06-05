@@ -1,0 +1,54 @@
+
+Kickstarter Blockchain Clone
+
+* Contract
+
+** Campaign
+*** Variables
+
+    | Name                | Type      | Description                                                            |
+    |---------------------+-----------+------------------------------------------------------------------------|
+    | manager             | address   | Address of the person who is managing this campaign                    |
+    | minimumContribution | uint      | Minimum donation required to be considered a contributor or 'approver' |
+    | approvers           | mapping   | List of addresses for every                                            |
+    | requests            | Request[] | List of requests that the manager has created                          |
+    | approversCount      | uint      | Track number of Campaign approvers                                     |
+
+**** Request Struct
+
+      | Name          | Type    | Propose                                                      |
+      |---------------+---------+--------------------------------------------------------------|
+      | description   | string  | Describes why the request is being created                   |
+      | value         | uint    | Amount of money that the manager wants to send to the vendor |
+      | recipient     | address | Address that the money will be sent to                       |
+      | complete      | bool    | True if the request has already been processed (money sent)  |
+      | approvals     | mapping | Track who has voted                                          |
+      | approvalCount | uint    | Track number of approvals                                    |
+
+
+*** Functions
+
+    | Name            | Description                                                                                            |
+    |-----------------+--------------------------------------------------------------------------------------------------------|
+    | Campaign        | Constructor function that sets the minimumContribution and the manager                                 |
+    | contribute      | Called when someone wants to donate money to the campaign and become an 'approver'                     |
+    | createRequest   | Called by the manager to create a new 'spending request'                                               |
+    | approveRequest  | Called by each contributor to approve a spending request                                               |
+    | finalizeRequest | After a request has gotten enough approvals, the manager can call this to get money sent to the vendor |
+
+
+
+** CampaignFactory
+
+*** Variables
+
+    | Name              | Type      | Description                         |
+    |-------------------+-----------+-------------------------------------|
+    | deployedCampaigns | address[] | Addresses of all deployed campaigns |
+
+*** Functions
+
+    | Name                 | Description                                                           |
+    |----------------------+-----------------------------------------------------------------------|
+    | createCampaign       | Deploys a new instance of a Campaign and stores the resulting address |
+    | getDeployedCampaigns | Returns a list of all deployed campaigns                              |
