@@ -6,4 +6,7 @@ credentials/
 
 metaMaskAccount.txt
 
+
 .[#]*
+
+.secrets.json
