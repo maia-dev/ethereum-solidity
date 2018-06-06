@@ -38,6 +38,7 @@ Kickstarter Blockchain Clone
 
 
 
+
 ** CampaignFactory
 
 *** Variables
@@ -52,3 +53,22 @@ Kickstarter Blockchain Clone
     |----------------------+-----------------------------------------------------------------------|
     | createCampaign       | Deploys a new instance of a Campaign and stores the resulting address |
     | getDeployedCampaigns | Returns a list of all deployed campaigns                              |
+
+
+* FrontEnd
+
+** Routes
+
+   | Path                           | Description                                             |
+   |--------------------------------+---------------------------------------------------------|
+   | /                              | List of Campaigns                                       |
+   | /campaigns/new                 | Form to make a campaign                                 |
+   | /campaigns/0x8147              | Campaign details for campaign at address 0x8147         |
+   | /campaigns/0x8147/requests     | Requests for campaign at address 0x8147                 |
+   | /campaigns/0x8147/requests/new | Form to create a request for campaign at address 0x8147 |
+
+*** Steps for / route
+**** Configure web3 with a provider from metamask
+**** Tell web3 that a deployed copy of the campaignFactory exists
+**** Use Factory instance to retrieve a list of deployed campaigns
+**** User React to show something about each campaign
