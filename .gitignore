@@ -2,9 +2,9 @@ node_modules/
 authData/
 credentials/
 
-.tern-port
+**/.next
 
 metaMaskAccount.txt
 
-.#*
 .secrets.json
+.tern-port
