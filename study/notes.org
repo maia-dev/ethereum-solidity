@@ -1,0 +1,307 @@
+* General Knowledge
+
+** browser pluggin to handle accounts: metaMask
+
+** online IDE for solidity: https://remix.ethereum.org/
+** local test network: Ganache(former TestRPC)
+*** Account creation
+    the Ganache package creates a set of unprotected
+    accounts that can be used while testing
+
+** remote test network: Rinkeby
+
+** javascript testing framework used: mocha
+
+
+* Solidity knowledge
+** solidity compiler: solc
+
+** Compiling solidity code results in diferent components:
+*** ABI (Application Binary Interface) (abiDefinition)
+
+*** Code (EVM bytecode):                                           :ethereum:
+    The code that is actualy deployed and executed in the blockchain
+
+*** Other General information about the contract:
+**** source code
+**** language
+**** language version
+**** compiler version
+**** userDoc
+**** developerDoc
+** Global Variables
+*** msg
+    Describes who sent the transaction and the transaction itself.
+    The msg object is available on contract creation and on any transaction.
+**** Properties
+***** msg.data
+      'Data' field from the call or transaction that invoked the current function
+***** msg.gas
+      Amount of gas the current function invocation has available
+***** msg.sender
+      Address of the account that started the current function invocation
+***** msg.value
+      Amount of ether (in wei) that was sent along with the function invocation
+*** block
+    Describes the current block
+*** now
+    alias to block.timestamp
+
+** Global Functions
+*** require()
+    Used to validate some boolean expression, in case the result is false
+    it rejects the transaction
+*** keccak256()
+    hashes the feeded parameters (similar to sha-3 hashing)
+** Basic Types
+*** string
+    sequence of characters
+    (its represented as a dynamic array. see arrays gotchas)
+*** bool
+    boolean value
+*** int
+    integer, positive or negative
+    diferent sizes: int8, int16, int32, ..., int256 (int == int256)
+*** uint
+    unsigned int, positive number
+    diferent sizes: uint8, uint16, uint32, ..., uint256 (uint == uint256)
+*** fixed/ufixed
+    fixed point number.
+*** address
+    has methods tied to it for handling money
+**** transfer(eth)
+     transfers the amount eth to the address
+** Reference Types
+*** fixed array
+    Array that contains a single type of element. Has an unchanging length.
+    example: int[3]
+**** Gotcha
+     Solidity world allows for creation of nested arrays BUT ABI/JS/Web3
+     world doesn't (yet).
+*** dynamic array
+    Array that contains a single type of element. Can change in size over time.
+    example: int[]
+**** Gotcha
+     Solidity world allows for creation of nested arrays BUT ABI/JS/Web3
+     world doesn't (yet).
+*** mapping
+    Collection of key value pairs. All keys must be the samy type, all values
+    must be the same type.
+    example: mapping(string => bool)
+*** struct
+    Collection of key value pairs that can have different types.
+    example: struct Car { string make; string model; uint value; }
+** Common Function Types
+*** Access modifiers
+**** public
+     Anyone can call this function
+**** private
+     Only this contract can call this function
+*** Functionality
+**** view
+     This function returns data and does not modify the contract's data
+**** constant
+     This function returns data and does not modify the contract's data
+**** pure
+     Function will not modify or even read the contract's data
+**** payable
+     When someone call this function they might send ether along
+*** Modifier
+    function modifiers are used to execute repeatable code before the function
+
+
+
+* Ethereum knowledge
+
+** Bitcoin vs Ethereum
+   Bitcoin blockchain was created as a tool to store a list of monetary
+   transactions between people (enable financial transactions).
+   Ethereum aims, not only to handle the transfer of currency but other
+   exchanges as well (smart contract) thus ending the need to have trusted
+   third parties involved on peer to peer transactions.
+
+** Account
+   In the world of ethereum an account lives in a separate world from the
+   networks, that means that each network can be tied to the account address
+   but the balance is not shared between networks.
+
+*** Two types of accounts
+**** Externally owner
+     controlled by private keys
+
+**** contract accounts
+     controlled by their contract code
+
+
+** Node:
+   A node is a machine running an ethereum client
+*** Light client
+    keeps a shallow-copy of the blockchain
+    can verify the executiuon of a transaction
+
+*** Full Node
+    fully enforces the consensus rules.
+    Validate the nodes and transactions and relay the information to the other
+    nodes (using the gossip protocol)
+
+
+** Network:
+   Networks are formed by one or more nodes
+
+*** Main
+    Where the production aplications are deployed and ether coins actualy have
+    value.
+
+*** Test
+    Test networks can be public (Rinkeby, Ropsten, Kovan, etc...) or
+    private/local (ganache) and are used to test contracts before production,
+    ether as no value on these networks an can be requested as needed.
+
+*** Private / Local
+    Restricted to a set of users
+
+** Transaction
+   A transaction is used to refer to the signed data package that stores a
+   message to be sent from an externally owned account.
+*** Transactions contain:
+**** recipient
+**** sender
+**** amount to transfer from sender to recipient
+**** data (optional)
+     a contract can access to retrieve needed information
+**** startgas
+     represents the maximum number of computational steps the transaction
+     execution is allowed to take
+**** gasprice
+     represents the fee the sender pays per computational step
+
+*** Life cycle
+**** 1) Create transaction
+**** 2) Sign transaction
+**** 3) Validate private key (local node)
+**** 4) Broadcast to the network
+**** 5) Miner node accepts the transaction
+**** 6) Miner node finds a valid block and broadcasts to the network
+**** 7) Local node receives/syncs the new block
+
+
+** Message
+   Messages are used for contracts to comunicate with each other.
+   Exist only in the Ethereum execution environment.
+*** messages contain:
+**** sender
+**** recipient
+**** amount of ether transfered alongside the message
+**** data (optional)
+**** startgas
+
+** Blocks
+   Ethereum blocks contain a copy of both the transaction list and the most
+   recent state. Aside from that, two other values, the block number and the
+   difficulty are also stored in the block.
+
+** Where the code is executed
+   The process of executing contract code is part of the block validation
+   algorithm.
+
+** Contract deployment
+   The bytecode resulting from the compilation of solidity code
+   can be deployed to the blockchain as a smartcontract.
+
+   In order to deploy a contract we can run our own node to get
+   access to the network or use a service like infura (infura.io).
+
+
+* Blockchain knowledge
+
+** TODO Miner
+
+** TODO Network
+
+** TODO Node
+
+** TODO Consensus
+
+
+* Cryptocurrency knowledge
+
+
+* FrontEnd knowledge
+
+** Gotchas
+*** MetaMask
+    When using metaMask pluggin, web3 with the selected (in the pluggin)
+    network provider is automaticaly injected into every page you visit.
+
+    When we are using our own instance of Web3, we still want to use the
+    metamask provider (it's where the information of our account is stored),
+    for that we have to highjack the provider ft arom metamask instace of web3.
+    (const web3 = new Web3(window.web3.currentProvider)
+
+* Glossary
+** ABI:
+   The interface between contracts in the ethereum ecosystem,
+   both from the outside and contract-to-contract interaction
+
+** Web3:
+   Library to get programatic access to a deployed contract.
+   Interacts with a provider, wich in turn interacts with a network
+*** Web3 0.x.x <- more primitive interface, only callbacks for async code
+*** Web3 1.x.x <- support for promises + async/await
+
+** EVM (Ethereum Virtual Machine):
+   Is the runtime environment for smart contracts in Ethereum.
+   It is the fundamental consensus mechanism for Ethereum.
+
+** Provider:
+   The communication layer with the blockchain.
+   Instructs web3 about the network it is connected to as well
+   as what accounts it is connected to.
+
+*** WebsocketProvider
+
+*** HttpProvider
+
+*** IpcProvider
+
+** Smart Contract:
+   A computer protocol intended to digitally facilitate, verify
+   or enforce the negotiation or performance of an arrangement
+   between two or more parties
+
+   In ethereum, contracts should not be seen as somethig that should be
+   "fulfilled" or "complied with"; rather, they are more like "autonumous
+   agents" that live inside the Ethereum execution environment.
+
+** mnemonic
+   Mnemonic is a passphrase from wich multiple account addresses can be
+   generated. It is used as a human friendly way to memorize and recover
+   the address of your accounts
+
+
+** gas
+   The term as represents the fee the sender of a transaction has to pay
+   in order for it to be executed.
+
+** Hash
+   An hash function consists on a function that can be used to map data of
+   arbitrary size to data of fixed size.
+
+*** Main properties
+
+**** Deterministic
+     same input produces same output
+
+**** Easy to verify output
+     It is easy to have the input and verify the output
+
+**** Hard to guess input
+     It is hard to have the output and discover the input
+
+
+
+* External links
+
+** Ethereum for Web Developers: https://medium.com/@mvmurthy/ethereum-for-web-developers-890be23d1d0c
+** Life Cycle of an Ethereum Transaction: https://medium.com/blockchannel/life-cycle-of-an-ethereum-transaction-e5c66bae0f6e
+** Blockchain Demo: https://anders.com/blockchain/blockchain.html

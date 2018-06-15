@@ -1,0 +1,11 @@
+{
+  "http": {
+    "port": 5000
+  },
+
+  "userAPIClient": {
+    "protocol": "http",
+    "host": "localhost",
+    "port": 5001
+  }
+}
