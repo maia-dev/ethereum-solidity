@@ -1,10 +1,10 @@
-node_modules/
-authData/
-credentials/
+**node_modules/
+**authData/
+**credentials/
 
 **/.next
 
-metaMaskAccount.txt
+**metaMaskAccount.txt
 
-.secrets.json
-.tern-port
+**.secrets.json
+**.tern-port
