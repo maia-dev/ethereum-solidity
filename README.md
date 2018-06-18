@@ -29,6 +29,9 @@ this api is intended to work as an ethereum wallet API with no knowledge of ethe
     {
 	  "from": sender userId.
 	  "to": receiver userId,
+      "addressTo": receiver ethereum address
 	  "weiAmount": amount in wei to transfer
 	}
+    
+    The transaction can be made directly to an ethereum address(addressTo) or to a userId(to), directly to an address takes priority when both are sent.
  4. **POST** /account/create/[user_id]

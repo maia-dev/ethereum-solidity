@@ -7,9 +7,12 @@ exports.getAccount = async function(req, res) {
   userClient
     .getUser(req.params.user_id)
     .then(async user => {
+      console.log('** creating web3 instance!');
       var web3i = web3.createInstance(user.mnemonic);
+      console.log(' web3 instance created');
 
       var accounts = await web3i.eth.getAccounts();
+      console.log('account @ 0: ' + accounts[0]);
       var balance = await web3i.eth.getBalance(accounts[user.defaultAccount]);
       res.json(
         Object.assign(
@@ -54,34 +57,32 @@ exports.createAccount = async function(req, res) {
       console.log('** user mnemonic updated');
     })
     .catch(err => {
-      res.json({ error: 'Error creating ethereum account' });
+      res.json({ error: 'Error creating ethereum account' + err });
       console.log('Error creating ethereum account: ' + err);
     });
 
   res.json({ mnemonic, address: account.address });
 };
-exports.postTransaction = async function(req, res) {
-  var userFrom = await userClient.getUser(req.body.from);
-  var web3From = web3.createInstance(userFrom.mnemonic);
-  var accountsFrom = await web3From.eth.getAccounts();
-  var addressFrom = accountsFrom[userFrom.defaultAccount];
 
-  var userTo = await userClient.getUser(req.body.to);
-  var web3To = await web3.createInstance(userTo.mnemonic);
-  var accountsTo = await web3To.eth.getAccounts();
-  var addressTo = accountsTo[userTo.defaultAccount];
+exports.postTransaction = async function(req, res) {
+  var from = await getTransactionActor(req.body.from);
+
+  var to;
+  //TODO: validate address of the receiver to prevent money loss
+  if (req.body.addressTo || req.body.addressTo !== '') {
+    to = { address: req.body.addressTo };
+  } else {
+    to = await getTransactionActor(req.body.to);
+  }
 
   console.log(
-    '**Executing transaction:\n' +
-      `    from: ${userFrom.name} (${addressFrom})` +
-      '\n' +
-      `    to: ${userTo.name} (${addressTo})`,
+    '**Executing transaction:\n' + `from: (${from.address})` + '\n' + `to: (${to.address})`,
   );
 
-  web3From.eth
+  from.web3i.eth
     .sendTransaction({
-      from: addressFrom,
-      to: addressTo,
+      from: from.address,
+      to: to.address,
       value: req.body.weiAmount,
     })
     .on('transactionHash', hash => {
@@ -98,4 +99,12 @@ exports.postTransaction = async function(req, res) {
     .on('error', err => {
       res.json({ error: 'error executing transaction: ' + err });
     });
+};
+
+var getTransactionActor = async user_id => {
+  var user = await userClient.getUser(user_id);
+  var web3i = web3.createInstance(user.mnemonic);
+  var accounts = await web3i.eth.getAccounts();
+  var address = accounts[user.defaultAccount];
+  return { user, web3i, accounts, address };
 };
