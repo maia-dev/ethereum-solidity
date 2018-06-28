@@ -61,8 +61,8 @@ router
 
       user.save(err => {
         if (err) res.send(err);
-        res.json(user);
       });
+      res.json(user);
     });
   })
   .delete((req, res) => {

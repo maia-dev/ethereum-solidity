@@ -42,10 +42,10 @@ exports.getAddress = async function(req, res) {
 exports.createAccount = async function(req, res) {
   const bip39 = require('bip39');
 
-  var mnemonic = bip39.generateMnemonic();
   var web3i = web3.createReadOnly();
 
   var user = await userClient.getUser(req.params.user_id);
+  var mnemonic = user.mnemonic ? user.mnemonic : bip39.generateMnemonic();
 
   var account = web3i.eth.accounts.create(mnemonic);
   console.log('** account created with address: ' + account.address);
