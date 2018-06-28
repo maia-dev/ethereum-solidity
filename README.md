@@ -1,4 +1,4 @@
-# Ethereum wallet API - POC
+# Ethereum wallet API - POC *OUTDATED*
 ## Setup
 
  1. install mongodb
