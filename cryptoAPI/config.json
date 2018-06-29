@@ -7,5 +7,13 @@
     "protocol": "http",
     "host": "localhost",
     "port": 5001
-  }
+  },
+
+  "mongo": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "crypto"
+  },
+
+  "nodeRPCHost": "https://rinkeby.infura.io/tABu9JsfFtPG9DtFDfAz"
 }

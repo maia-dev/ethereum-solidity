@@ -1,19 +1,21 @@
-var bitcore = require('bitcore-lib');
+var Account = require('../api/models/Account');
+var Mnemonic = require('bitcore-mnemonic');
 
-var privateKeyWIF = 'cNvm4zMH6pcMzS1mRqUtXbizMQGdSS5w5HmaqFqKLJJ1Kn4WDUJZ';
+exports.getWorkingAccount = async (userId, passphrase) => {
+  var account = await Account.findOne({ userId: userId });
+  console.log('account: ' + account);
 
-var privateKey = bitcore.PrivateKey.fromWIF(privateKeyWIF);
-var address = privateKey.toAddress();
+  var mnemonic = new Mnemonic(account.mnemonic);
+  console.log('Mnemonic: ' + mnemonic);
 
-console.log('address: ' + address);
+  var pKey = mnemonic.toHDPrivateKey(passphrase, 'testnet');
+  console.log('pKey: ' + pKey);
 
-var value = new Buffer(
-  'this is a way to generate an address from a string--risky--not random--guessable!!!',
-);
+  var derived = pKey.derive("m/44'/1'/0'/" + account.btcDefaultAddress + '/0');
+  console.log('derived: ' + derived);
 
-var hash = bitcore.crypto.Hash.sha256(value);
-var bn = bitcore.crypto.BN.fromBuffer(hash);
+  var address = derived.privateKey.toAddress();
+  console.log('address: ' + address);
 
-var address2 = new bitcore.PrivateKey(bn, 'testnet').toAddress();
-
-console.log('address2: ' + address2);
+  return { dbData: account, mnemonic, pKey, derived, address };
+};
